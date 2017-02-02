@@ -1,14 +1,7 @@
 class Picture < ActiveRecord::Base
-end
-
-class CreatePictures < ActiveRecord::Migration
-  def change
-    create_table :pictures do |t|
-      t.string :artist
-      t.string :title
-      t.string :url
-
-      t.timestamps null: false
-    end
-  end
+    validates :artist, presence: true
+    validates :title, length: { minimum: 3 }
+    validates :title, length: { maximum: 20 }
+    validates :url, presence: true
+    validates :url, uniqueness: true
 end
